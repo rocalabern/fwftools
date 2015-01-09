@@ -5,12 +5,6 @@ identifyHeader <- function (text) {
   return (text=="-")
 }
 
-#' @export
-rcpp_hello_world <- function() {
-#   .Call('fwftools_rcpp_hello_world', PACKAGE = 'fwftools')
-  .C('fwftools_rcpp_hello_world', PACKAGE = 'fwftools')
-}
-
 #' getHeader
 #' @export
 getHeader <- function (file, maxlines=100) {
