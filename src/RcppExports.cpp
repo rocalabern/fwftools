@@ -20,6 +20,26 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// fileFWFtoCSV
+void fileFWFtoCSV(Rcpp::CharacterVector inputFile, Rcpp::CharacterVector outputFile, Rcpp::NumericVector begin, Rcpp::NumericVector end, Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create("a"), Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create("a"), long skip = 0, long limit = 0, Rcpp::CharacterVector mode = Rcpp::CharacterVector::create("a"));
+RcppExport SEXP fwftools_fileFWFtoCSV(SEXP inputFileSEXP, SEXP outputFileSEXP, SEXP beginSEXP, SEXP endSEXP, SEXP header1SEXP, SEXP header2SEXP, SEXP skipSEXP, SEXP limitSEXP, SEXP modeSEXP) {
+BEGIN_RCPP
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type inputFile(inputFileSEXP );
+        Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type outputFile(outputFileSEXP );
+        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type begin(beginSEXP );
+        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type end(endSEXP );
+        Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type header1(header1SEXP );
+        Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type header2(header2SEXP );
+        Rcpp::traits::input_parameter< long >::type skip(skipSEXP );
+        Rcpp::traits::input_parameter< long >::type limit(limitSEXP );
+        Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type mode(modeSEXP );
+        fileFWFtoCSV(inputFile, outputFile, begin, end, header1, header2, skip, limit, mode);
+    }
+    return R_NilValue;
+END_RCPP
+}
 // fileShowLines
 void fileShowLines(Rcpp::CharacterVector file, long n = 100);
 RcppExport SEXP fwftools_fileShowLines(SEXP fileSEXP, SEXP nSEXP) {

@@ -37,7 +37,8 @@ fileHeader <- function (file, maxlines=100) {
     if (i>1) {
       o[["headers"]] = strsplit(gsub(" +"," ",textFile[i-1]),' ')[[1]]
     }
-    o[["text"]] = textFile[i]
+    o[["strHeader"]] = textFile[i-1]
+    o[["strSubHeader"]] = textFile[i]
     o[["widths"]] = widths
     o[["begin"]] = begin
     o[["end"]] = end

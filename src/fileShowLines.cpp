@@ -12,7 +12,7 @@ void fileShowLines (
   std::string fileInput = Rcpp::as<std::string>(file);
 
 	std::cout<<"File input  : "<<fileInput<<std::endl;
-	std::cout<<"Max Lines   : "<<n<<std::endl;
+	std::cout<<"Max. lines  : "<<n<<std::endl;
 	std::cout<<std::endl;
 
 	std::ifstream fin;

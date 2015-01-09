@@ -7,6 +7,11 @@ fileCountLines <- function(file) {
 }
 
 #' @export
+fileFWFtoCSV <- function(inputFile, outputFile, begin, end, header1 = as.character( c("a")), header2 = as.character( c("a")), skip = 0L, limit = 0L, mode = as.character( c("a"))) {
+    invisible(.Call('fwftools_fileFWFtoCSV', PACKAGE = 'fwftools', inputFile, outputFile, begin, end, header1, header2, skip, limit, mode))
+}
+
+#' @export
 fileShowLines <- function(file, n = 100L) {
     invisible(.Call('fwftools_fileShowLines', PACKAGE = 'fwftools', file, n))
 }
