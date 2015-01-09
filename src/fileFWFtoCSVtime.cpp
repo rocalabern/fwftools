@@ -123,7 +123,7 @@ double fileFWFtoCSVtime (
 
   Rprintf("\nTotal lines file: %d\n", totalLines);
   Rprintf("Time estimated  : %f seconds\n", (float(totalLines-skip)/float(nLinia-skip))*float( clock () - begin_time ) /  CLOCKS_PER_SEC);
-	return 0;
+	return (float(totalLines-skip)/float(nLinia-skip))*float( clock () - begin_time ) /  CLOCKS_PER_SEC;
 }
 
 // trim from start
