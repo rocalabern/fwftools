@@ -5,19 +5,45 @@
 
 using namespace Rcpp;
 
-// fileShowLines
-int fileShowLines(Rcpp::CharacterVector rfileInput, Rcpp::NumericVector rnLimitLines = Rcpp::NumericVector::create(100));
-RcppExport SEXP fwftools_fileShowLines(SEXP rfileInputSEXP, SEXP rnLimitLinesSEXP) {
+// fileCountLines
+int fileCountLines(Rcpp::CharacterVector file);
+RcppExport SEXP fwftools_fileCountLines(SEXP fileSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type rfileInput(rfileInputSEXP );
-        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rnLimitLines(rnLimitLinesSEXP );
-        int __result = fileShowLines(rfileInput, rnLimitLines);
+        Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type file(fileSEXP );
+        int __result = fileCountLines(file);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
+END_RCPP
+}
+// fileShowLines
+void fileShowLines(Rcpp::CharacterVector file, long n = 100);
+RcppExport SEXP fwftools_fileShowLines(SEXP fileSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type file(fileSEXP );
+        Rcpp::traits::input_parameter< long >::type n(nSEXP );
+        fileShowLines(file, n);
+    }
+    return R_NilValue;
+END_RCPP
+}
+// fileShowMidLines
+void fileShowMidLines(Rcpp::CharacterVector file, long begin = 1, long end = 100);
+RcppExport SEXP fwftools_fileShowMidLines(SEXP fileSEXP, SEXP beginSEXP, SEXP endSEXP) {
+BEGIN_RCPP
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type file(fileSEXP );
+        Rcpp::traits::input_parameter< long >::type begin(beginSEXP );
+        Rcpp::traits::input_parameter< long >::type end(endSEXP );
+        fileShowMidLines(file, begin, end);
+    }
+    return R_NilValue;
 END_RCPP
 }

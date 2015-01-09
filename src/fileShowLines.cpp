@@ -1,44 +1,35 @@
 #include <Rcpp.h>
 #include <iostream>
 #include <fstream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <algorithm>
-#include <functional>
-#include <cctype>
-#include <locale>
 
-using namespace std;
+using namespace Rcpp;
 
 //' @export
 // [[Rcpp::export]]
-int fileShowLines (
-  Rcpp::CharacterVector rfileInput,
-  Rcpp::NumericVector rnLimitLines = Rcpp::NumericVector::create(100)) {
-  string fileInput = Rcpp::as<std::string>(rfileInput);
-  long nLimitLines = rnLimitLines[0];
+void fileShowLines (
+  Rcpp::CharacterVector file,
+  long n = 100) {
+  std::string fileInput = Rcpp::as<std::string>(file);
 
-	cout<<"File input  : "<<fileInput<<endl;
-	cout<<"Lines  = "<<nLimitLines<<endl;
-	cout<<endl;
+	std::cout<<"File input  : "<<fileInput<<std::endl;
+	std::cout<<"Max Lines   : "<<n<<std::endl;
+	std::cout<<std::endl;
 
-	ifstream fin;
+	std::ifstream fin;
 	fin.open(fileInput.c_str());
 	if (!fin.is_open()) {
-		cout << "Error opening input file."<<endl;
-		return 0;
+		std::cout << "Error opening input file."<<std::endl;
+		return;
 	}
 
 	long nLinia = 0;
-	string sLinia;
-	while (!fin.eof() && nLinia<nLimitLines) {
+	std::string sLinia;
+	while (!fin.eof() && nLinia<n) {
 		nLinia++;
 		getline(fin, sLinia);
 
-		cout<<"(Line "<<nLinia<<") :"<<sLinia<<endl;
+		std::cout<<"[Line "<<nLinia<<"]:"<<sLinia<<std::endl;
 	}
 	fin.close();
-	return 0;
+	return;
 }

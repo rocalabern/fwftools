@@ -2,7 +2,17 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @export
-fileShowLines <- function(rfileInput, rnLimitLines = as.numeric( c(100))) {
-    .Call('fwftools_fileShowLines', PACKAGE = 'fwftools', rfileInput, rnLimitLines)
+fileCountLines <- function(file) {
+    .Call('fwftools_fileCountLines', PACKAGE = 'fwftools', file)
+}
+
+#' @export
+fileShowLines <- function(file, n = 100L) {
+    invisible(.Call('fwftools_fileShowLines', PACKAGE = 'fwftools', file, n))
+}
+
+#' @export
+fileShowMidLines <- function(file, begin = 1L, end = 100L) {
+    invisible(.Call('fwftools_fileShowMidLines', PACKAGE = 'fwftools', file, begin, end))
 }
 
