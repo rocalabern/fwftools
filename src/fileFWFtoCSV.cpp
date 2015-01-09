@@ -16,11 +16,11 @@ void fileFWFtoCSV (
   Rcpp::CharacterVector outputFile,
   Rcpp::IntegerVector begin,
   Rcpp::IntegerVector end,
-  Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create("a"),
-  Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create("a"),
+  Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create(""),
+  Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create(""),
   long skip = 0,
   long limit = 0,
-  Rcpp::CharacterVector mode = Rcpp::CharacterVector::create("a")
+  Rcpp::CharacterVector mode = Rcpp::CharacterVector::create("n")
   ) {
   std::string strFileInput = Rcpp::as<std::string>(inputFile);
   std::string strFileOutput = Rcpp::as<std::string>(outputFile);

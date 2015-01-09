@@ -12,12 +12,12 @@ fileCountLines <- function(file) {
 }
 
 #' @export
-fileFWFtoCSV <- function(inputFile, outputFile, begin, end, header1 = as.character( c("a")), header2 = as.character( c("a")), skip = 0L, limit = 0L, mode = as.character( c("a"))) {
+fileFWFtoCSV <- function(inputFile, outputFile, begin, end, header1 = as.character( c("")), header2 = as.character( c("")), skip = 0L, limit = 0L, mode = as.character( c("n"))) {
     invisible(.Call('fwftools_fileFWFtoCSV', PACKAGE = 'fwftools', inputFile, outputFile, begin, end, header1, header2, skip, limit, mode))
 }
 
 #' @export
-fileFWFtoCSVtime <- function(inputFile, outputFile, begin, end, header1 = as.character( c("a")), header2 = as.character( c("a")), skip = 0L, limit = 1000L) {
+fileFWFtoCSVtime <- function(inputFile, outputFile, begin, end, header1 = as.character( c("")), header2 = as.character( c("")), skip = 0L, limit = 1000L) {
     .Call('fwftools_fileFWFtoCSVtime', PACKAGE = 'fwftools', inputFile, outputFile, begin, end, header1, header2, skip, limit)
 }
 

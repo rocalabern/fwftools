@@ -37,7 +37,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // fileFWFtoCSV
-void fileFWFtoCSV(Rcpp::CharacterVector inputFile, Rcpp::CharacterVector outputFile, Rcpp::IntegerVector begin, Rcpp::IntegerVector end, Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create("a"), Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create("a"), long skip = 0, long limit = 0, Rcpp::CharacterVector mode = Rcpp::CharacterVector::create("a"));
+void fileFWFtoCSV(Rcpp::CharacterVector inputFile, Rcpp::CharacterVector outputFile, Rcpp::IntegerVector begin, Rcpp::IntegerVector end, Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create(""), Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create(""), long skip = 0, long limit = 0, Rcpp::CharacterVector mode = Rcpp::CharacterVector::create("n"));
 RcppExport SEXP fwftools_fileFWFtoCSV(SEXP inputFileSEXP, SEXP outputFileSEXP, SEXP beginSEXP, SEXP endSEXP, SEXP header1SEXP, SEXP header2SEXP, SEXP skipSEXP, SEXP limitSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     {
@@ -57,7 +57,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // fileFWFtoCSVtime
-double fileFWFtoCSVtime(Rcpp::CharacterVector inputFile, Rcpp::CharacterVector outputFile, Rcpp::IntegerVector begin, Rcpp::IntegerVector end, Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create("a"), Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create("a"), long skip = 0, long limit = 1000);
+double fileFWFtoCSVtime(Rcpp::CharacterVector inputFile, Rcpp::CharacterVector outputFile, Rcpp::IntegerVector begin, Rcpp::IntegerVector end, Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create(""), Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create(""), long skip = 0, long limit = 1000);
 RcppExport SEXP fwftools_fileFWFtoCSVtime(SEXP inputFileSEXP, SEXP outputFileSEXP, SEXP beginSEXP, SEXP endSEXP, SEXP header1SEXP, SEXP header2SEXP, SEXP skipSEXP, SEXP limitSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
