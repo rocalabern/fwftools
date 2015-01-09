@@ -1,11 +1,11 @@
 Package: fwftools
 Type: Package
-Title: What the package does (short line)
+Title: Tools for Fixed Width Format Files
 Version: 1.0
 Date: 2015-01-09
-Author: Your Name
-Maintainer: Your Name <your@email.com>
-Description: More about what it does (maybe more than one line)
+Author: Roc Alabern
+Maintainer: Roc Alabern <roc.alabern@gmail.com>
+Description: Tools for Fixed Width Format Files
 License: GPL (>= 2)
 Imports: Rcpp (>= 0.11.3)
 LinkingTo: Rcpp
