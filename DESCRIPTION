@@ -11,4 +11,4 @@ Imports: Rcpp (>= 0.11.3)
 LinkingTo: Rcpp
 Collate:
     'fwftools.R'
-    'RcppExpoorts.R'
+    'RcppExports.R'
