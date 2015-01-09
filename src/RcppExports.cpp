@@ -5,6 +5,22 @@
 
 using namespace Rcpp;
 
+// cppTest
+Rcpp::IntegerVector cppTest(Rcpp::IntegerVector begin, Rcpp::IntegerVector end);
+RcppExport SEXP fwftools_cppTest(SEXP beginSEXP, SEXP endSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type begin(beginSEXP );
+        Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type end(endSEXP );
+        Rcpp::IntegerVector __result = cppTest(begin, end);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // fileCountLines
 int fileCountLines(Rcpp::CharacterVector file);
 RcppExport SEXP fwftools_fileCountLines(SEXP fileSEXP) {
@@ -21,15 +37,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // fileFWFtoCSV
-void fileFWFtoCSV(Rcpp::CharacterVector inputFile, Rcpp::CharacterVector outputFile, Rcpp::NumericVector begin, Rcpp::NumericVector end, Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create("a"), Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create("a"), long skip = 0, long limit = 0, Rcpp::CharacterVector mode = Rcpp::CharacterVector::create("a"));
+void fileFWFtoCSV(Rcpp::CharacterVector inputFile, Rcpp::CharacterVector outputFile, Rcpp::IntegerVector begin, Rcpp::IntegerVector end, Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create("a"), Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create("a"), long skip = 0, long limit = 0, Rcpp::CharacterVector mode = Rcpp::CharacterVector::create("a"));
 RcppExport SEXP fwftools_fileFWFtoCSV(SEXP inputFileSEXP, SEXP outputFileSEXP, SEXP beginSEXP, SEXP endSEXP, SEXP header1SEXP, SEXP header2SEXP, SEXP skipSEXP, SEXP limitSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type inputFile(inputFileSEXP );
         Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type outputFile(outputFileSEXP );
-        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type begin(beginSEXP );
-        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type end(endSEXP );
+        Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type begin(beginSEXP );
+        Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type end(endSEXP );
         Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type header1(header1SEXP );
         Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type header2(header2SEXP );
         Rcpp::traits::input_parameter< long >::type skip(skipSEXP );

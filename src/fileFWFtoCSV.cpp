@@ -14,8 +14,8 @@ static inline std::string &trim(std::string &s);
 void fileFWFtoCSV (
   Rcpp::CharacterVector inputFile,
   Rcpp::CharacterVector outputFile,
-  Rcpp::NumericVector begin,
-  Rcpp::NumericVector end,
+  Rcpp::IntegerVector begin,
+  Rcpp::IntegerVector end,
   Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create("a"),
   Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create("a"),
   long skip = 0,
@@ -33,6 +33,14 @@ void fileFWFtoCSV (
 	std::cout<<"Skip lines  : "<<skip<<std::endl;
   std::cout<<"Max. lines  : "<<limit<<std::endl;
 	std::cout<<std::endl;
+
+  Rcpp::IntegerVector start = Rcpp::IntegerVector(begin.size());
+  Rcpp::IntegerVector length = Rcpp::IntegerVector(begin.size());
+
+  for (int i=0;i<begin.size();i++) {
+    start[i]  = begin[i] - 1;
+    length[i] = end[i] - begin[i] + 1;
+  }
 
   const clock_t begin_time = clock();
 
@@ -82,14 +90,14 @@ void fileFWFtoCSV (
         bool first = true;
 				std::string substring;
 
-        for (int i=0;i<begin.size();i++) {
+        for (int i=0;i<start.size();i++) {
           if (first) {
-    				substring = sLinia.substr(begin[i],end[i]);
+    				substring = sLinia.substr(start[i],length[i]);
     				substring = trim(substring);
     				fout<<substring;
             first = false;
           } else {
-    				substring = sLinia.substr(begin[i],end[i]);
+    				substring = sLinia.substr(start[i],length[i]);
     				substring = trim(substring);
     				fout<<";"<<substring;
           }
