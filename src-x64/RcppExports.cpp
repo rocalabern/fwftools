@@ -5,14 +5,16 @@
 
 using namespace Rcpp;
 
-// rcpp_hello_world
-List rcpp_hello_world();
-RcppExport SEXP fwftools_rcpp_hello_world() {
+// fileShowLines
+int fileShowLines(Rcpp::CharacterVector rfileInput, Rcpp::NumericVector rnLimitLines = Rcpp::NumericVector::create(100));
+RcppExport SEXP fwftools_fileShowLines(SEXP rfileInputSEXP, SEXP rnLimitLinesSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
-        List __result = rcpp_hello_world();
+        Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type rfileInput(rfileInputSEXP );
+        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rnLimitLines(rnLimitLinesSEXP );
+        int __result = fileShowLines(rfileInput, rnLimitLines);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);

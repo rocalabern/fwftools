@@ -2,7 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @export
-rcpp_hello_world <- function() {
-    .Call('fwftools_rcpp_hello_world', PACKAGE = 'fwftools')
+fileShowLines <- function(rfileInput, rnLimitLines = as.numeric( c(100))) {
+    .Call('fwftools_fileShowLines', PACKAGE = 'fwftools', rfileInput, rnLimitLines)
 }
 

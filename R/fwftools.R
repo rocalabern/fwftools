@@ -1,19 +1,19 @@
-#' identifyHeader
-identifyHeader <- function (text) {
+#' isSubHeader
+isSubHeader <- function (text) {
   text <- gsub(" +","",text)
   text <- gsub("-+","-",text)
   return (text=="-")
 }
 
-#' getHeader
+#' fileHeader
 #' @export
-getHeader <- function (file, maxlines=100) {
+fileHeader <- function (file, maxlines=100) {
   textFile <- readLines (file, n=maxlines)
 
   found = FALSE
   i = 1
   while (i<length(textFile) && !found) {
-    if (identifyHeader(textFile[i])) {
+    if (isSubHeader(textFile[i])) {
       found = TRUE
     } else {
       i <- i+1
