@@ -1,11 +1,4 @@
-#' sortCharacters
-#' @export
-sortCharacters <- function (text) {
-  vapply(text, function(xi) paste(sort(strsplit(xi, NULL)[[1]]), collapse=''), '', USE.NAMES = FALSE)
-}
-
 #' identifyHeader
-#' @export
 identifyHeader <- function (text) {
   text <- gsub(" +","",text)
   text <- gsub("-+","-",text)
