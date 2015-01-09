@@ -15,7 +15,7 @@ Rcpp::IntegerVector cppTest (
   Rcpp::IntegerVector length = Rcpp::IntegerVector(begin.size());
 
   for (int i=0;i<begin.size();i++) {
-    start[i]  = begin[i] + 1;
+    start[i]  = begin[i] - 1;
     length[i] = end[i] - begin[i] + 1;
   }
 
@@ -29,7 +29,6 @@ Rcpp::IntegerVector cppTest (
   }
   std::cout<<std::endl;
 
-
-  std::cout<<std::endl<<"Time used: "<<float( clock () - begin_time ) /  CLOCKS_PER_SEC<<std::endl;
-	return start;
+  Rprintf("Time used  : %f\n", float( clock () - begin_time ) /  CLOCKS_PER_SEC);
+	return length;
 }

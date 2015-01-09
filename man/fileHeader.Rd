@@ -4,7 +4,7 @@
 \alias{fileHeader}
 \title{fileHeader}
 \usage{
-fileHeader(file, maxlines = 100)
+fileHeader(file, n = 100)
 }
 \description{
 fileHeader

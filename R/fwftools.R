@@ -7,8 +7,8 @@ isSubHeader <- function (text) {
 
 #' fileHeader
 #' @export
-fileHeader <- function (file, maxlines=100) {
-  textFile <- readLines (file, n=maxlines)
+fileHeader <- function (file, n=100) {
+  textFile <- readLines (file, n=n)
 
   found = FALSE
   i = 1

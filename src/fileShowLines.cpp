@@ -11,14 +11,13 @@ void fileShowLines (
   long n = 100) {
   std::string fileInput = Rcpp::as<std::string>(file);
 
-	std::cout<<"File input  : "<<fileInput<<std::endl;
-	std::cout<<"Max. lines  : "<<n<<std::endl;
-	std::cout<<std::endl;
+  Rprintf("File input  : %s\n", fileInput.c_str());
+  Rprintf("Max. lines  : %d\n\n", n);
 
 	std::ifstream fin;
 	fin.open(fileInput.c_str());
 	if (!fin.is_open()) {
-		std::cout << "Error opening input file."<<std::endl;
+    Rprintf("Error opening input file.\n");
 		return;
 	}
 
@@ -28,7 +27,7 @@ void fileShowLines (
 		nLinia++;
 		getline(fin, sLinia);
 
-		std::cout<<"[Line "<<nLinia<<"]:"<<sLinia<<std::endl;
+    Rprintf("[Line %d]:%s\n", nLinia, sLinia.c_str());
 	}
 	fin.close();
 	return;

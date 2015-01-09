@@ -8,29 +8,28 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 void fileShowMidLines (
   Rcpp::CharacterVector file,
-  long begin = 1, long end = 100) {
+  long nini = 1, long nend = 100) {
   std::string fileInput = Rcpp::as<std::string>(file);
 
-  std::cout<<"File input  : "<<fileInput<<std::endl;
-	std::cout<<std::endl;
+  Rprintf("File input  : %s\n\n", fileInput.c_str());
 
 	std::ifstream fin;
 	fin.open(fileInput.c_str());
 	if (!fin.is_open()) {
-		std::cout << "Error opening input file."<<std::endl;
+    Rprintf("Error opening input file.\n");
 		return;
 	}
 
 	long nLinia = 0;
 	std::string sLinia;
-  while (!fin.eof() && nLinia<(begin-1)) {
+  while (!fin.eof() && nLinia<(nini-1)) {
 		nLinia++;
 		getline(fin, sLinia);
 	}
-	while (!fin.eof() && nLinia<end) {
+	while (!fin.eof() && nLinia<nend) {
 		nLinia++;
 		getline(fin, sLinia);
-		std::cout<<"[Line "<<nLinia<<"]:"<<sLinia<<std::endl;
+    Rprintf("[Line %d]:%s\n", nLinia, sLinia.c_str());
 	}
 	fin.close();
 	return;

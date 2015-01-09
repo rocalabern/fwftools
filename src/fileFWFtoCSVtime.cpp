@@ -11,7 +11,7 @@ static inline std::string &trim(std::string &s);
 
 //' @export
 // [[Rcpp::export]]
-void fileFWFtoCSV (
+double fileFWFtoCSVtime (
   Rcpp::CharacterVector inputFile,
   Rcpp::CharacterVector outputFile,
   Rcpp::IntegerVector begin,
@@ -19,19 +19,16 @@ void fileFWFtoCSV (
   Rcpp::CharacterVector header1 = Rcpp::CharacterVector::create("a"),
   Rcpp::CharacterVector header2 = Rcpp::CharacterVector::create("a"),
   long skip = 0,
-  long limit = 0,
-  Rcpp::CharacterVector mode = Rcpp::CharacterVector::create("a")
+  long limit = 1000
   ) {
   std::string strFileInput = Rcpp::as<std::string>(inputFile);
   std::string strFileOutput = Rcpp::as<std::string>(outputFile);
   std::string strHeader1 = Rcpp::as<std::string>(header1);
   std::string strHeader2 = Rcpp::as<std::string>(header2);
-  std::string strMode = Rcpp::as<std::string>(mode);
 
   Rprintf("File input  : %s\n", strFileInput.c_str());
   Rprintf("File output: %s\n", strFileOutput.c_str());
-  Rprintf("Skip lines  : %d\n", skip);
-  Rprintf("Max. lines  : %d\n", limit);
+  Rprintf("Skip lines  : %d\n\n", skip);
 
   Rcpp::IntegerVector start = Rcpp::IntegerVector(begin.size());
   Rcpp::IntegerVector length = Rcpp::IntegerVector(begin.size());
@@ -41,41 +38,48 @@ void fileFWFtoCSV (
     length[i] = end[i] - begin[i] + 1;
   }
 
-  const clock_t begin_time = clock();
-
-	std::ifstream fin;
+  std::ifstream fin;
   std::ofstream fout;
+
   fin.open(strFileInput.c_str());
-  if (strMode.compare("a")==0) {
-    Rprintf("Append      : yes (%s)\n\n", strMode.c_str());
-    fout.open(strFileOutput.c_str(), std::ios::app);
-  } else {
-    Rprintf("Append      : no (%s)\n\n", strMode.c_str());
-    fout.open(strFileOutput.c_str(), std::ios::out | std::ios::trunc);
-  }
+  if (!fin.is_open()) {
+		Rprintf("Error opening input file.\n");
+		return 0;
+	}
+
+	long totalLines = 0;
+	std::string sLinia;
+	while (!fin.eof()) {
+		totalLines++;
+		getline(fin, sLinia);
+	}
+	fin.close();
+
+  fin.open(strFileInput.c_str());
+  fout.open(strFileOutput.c_str(), std::ios::out | std::ios::trunc);
 
 	if (!fin.is_open()) {
 		Rprintf("Error opening input file.\n");
   	if (fout.is_open()) {
 			fout.close();
 		}
-		return;
+		return 0;
 	}
   if (!fout.is_open()) {
 	  Rprintf("Error opening output file.\n");
 		if (fin.is_open()) {
 			fin.close();
 		}
-		return;
+		return 0;
 	}
 
 	long nLinia = 0;
-	std::string sLinia;
   while (!fin.eof() && nLinia<skip) {
 		nLinia++;
 		getline(fin, sLinia);
-    Rprintf("[Line %d]:%s\n", nLinia, sLinia.c_str());
 	}
+
+  const clock_t begin_time = clock();
 
 	while (!fin.eof() && (limit<1 || nLinia<limit)) {
   	nLinia++;
@@ -117,9 +121,9 @@ void fileFWFtoCSV (
 	fout.close();
 	fin.close();
 
-  Rprintf("\nTotal lines: %d\n", nLinia);
-  Rprintf("Time used  : %f seconds\n", float( clock () - begin_time ) /  CLOCKS_PER_SEC);
-	return;
+  Rprintf("\nTotal lines file: %d\n", totalLines);
+  Rprintf("Time estimated  : %f seconds\n", (float(totalLines-skip)/float(nLinia-skip))*float( clock () - begin_time ) /  CLOCKS_PER_SEC);
+	return 0;
 }
 
 // trim from start

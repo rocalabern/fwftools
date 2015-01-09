@@ -9,13 +9,12 @@ using namespace Rcpp;
 int fileCountLines (Rcpp::CharacterVector file) {
   std::string fileInput = Rcpp::as<std::string>(file);
 
-  std::cout<<"File input  : "<<fileInput<<std::endl;
-	std::cout<<std::endl;
+  Rprintf("File input  : %s\n\n", fileInput.c_str());
 
 	std::ifstream fin;
 	fin.open(fileInput.c_str());
 	if (!fin.is_open()) {
-		std::cout << "Error opening input file."<<std::endl;
+		Rprintf("Error opening input file.\n");
 		return 0;
 	}
 
@@ -27,6 +26,6 @@ int fileCountLines (Rcpp::CharacterVector file) {
 	}
 	fin.close();
 
-  std::cout<<"Total lines: "<<nLinia<<std::endl;
+  Rprintf("Total lines: %d\n", nLinia);
 	return nLinia;
 }

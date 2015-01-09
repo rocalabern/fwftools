@@ -17,12 +17,17 @@ fileFWFtoCSV <- function(inputFile, outputFile, begin, end, header1 = as.charact
 }
 
 #' @export
+fileFWFtoCSVtime <- function(inputFile, outputFile, begin, end, header1 = as.character( c("a")), header2 = as.character( c("a")), skip = 0L, limit = 1000L) {
+    .Call('fwftools_fileFWFtoCSVtime', PACKAGE = 'fwftools', inputFile, outputFile, begin, end, header1, header2, skip, limit)
+}
+
+#' @export
 fileShowLines <- function(file, n = 100L) {
     invisible(.Call('fwftools_fileShowLines', PACKAGE = 'fwftools', file, n))
 }
 
 #' @export
-fileShowMidLines <- function(file, begin = 1L, end = 100L) {
-    invisible(.Call('fwftools_fileShowMidLines', PACKAGE = 'fwftools', file, begin, end))
+fileShowMidLines <- function(file, nini = 1L, nend = 100L) {
+    invisible(.Call('fwftools_fileShowMidLines', PACKAGE = 'fwftools', file, nini, nend))
 }
 
